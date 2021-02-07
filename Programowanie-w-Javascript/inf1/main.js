@@ -1,17 +1,31 @@
 // pobranie referencji
 const gallery = document.querySelectorAll('.gallery img');
+let lightbox = document.querySelector('.lightbox');
+const img = document.querySelector('.lightbox img');
 
-// zapisanie się na zdarzenie click
-for (let idx = 0; idx < gallery.length; idx++) {
-    const img = gallery[idx];
-    img.addEventListener('click', showLightbox);
-}
 
-function showLightbox(ev) { 
-    console.dir(ev.target);
-    const lightbox = document.querySelector('.lightbox');
-    const img = document.querySelector('.lightbox img');
-    const imgUrl = ev.target.src;
-    img.src = imgUrl;
-    lightbox.classList.add('visible');
-}
+window.onload = function(){
+    for (let idx = 0; idx < gallery.length; idx++) {
+        let newIndex=idx;
+
+        gallery[idx].onclick= (ev) =>{
+            console.log(ev.target);
+           
+            // Przypisanie zdjęcia do source
+            let selectedImgUrl = gallery[newIndex].src;
+            img.src = selectedImgUrl;
+            
+            lightbox.classList.add('visible');
+
+            // Usunięcie 'visible' 
+            lightbox.addEventListener('click', e=>{
+                if (e.target !== e.currentTarget) return;
+                lightbox.classList.remove('visible');
+            });
+            // Usunięcie 'visible' po klinknięciu w przycisk close(X)
+            document.getElementById('close').addEventListener('click', function () {
+                lightbox.classList.remove('visible');
+            });
+        };
+    }
+};

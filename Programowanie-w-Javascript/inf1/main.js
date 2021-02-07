@@ -8,10 +8,10 @@ const nextBtn = document.querySelector('.arrow-next');
 window.onload = function(){
     for (let idx = 0; idx < gallery.length; idx++) {
         let newIndex=idx;
-
+        let clickImgIndex;
         gallery[idx].onclick= (ev) =>{
             console.log(ev.target);
-           
+            clickImgIndex= newIndex;
             
             function preview(){
                 // Przypisanie zdjęcia do source
@@ -59,10 +59,18 @@ window.onload = function(){
             // Usunięcie 'visible' 
             lightbox.addEventListener('click', e=>{
                 if (e.target !== e.currentTarget) return;
+                newIndex=clickImgIndex;
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
                 lightbox.classList.remove('visible');
             });
             // Usunięcie 'visible' po klinknięciu w przycisk close(X)
             document.getElementById('close').addEventListener('click', function () {
+                newIndex=clickImgIndex;
+                // Eliminuje błąd polegający na tym, że po przy zamknięciiu poprzez button X
+                // 1-ego i ostatniego zdjęcia gubiliśmy buttony strzałek
+                prevBtn.style.display = 'block';
+                nextBtn.style.display = 'block';
                 lightbox.classList.remove('visible');
             });
         };

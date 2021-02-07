@@ -21,13 +21,23 @@ window.onload = function(){
                 console.log(img.src);
             }
              
+            // Ukrywa buttony  gdy wybieramy zdjęcie o indexie 0 albo ostatnim
+            if(newIndex == 0){
+                prevBtn.style.display = 'none';
+            }
+            if(newIndex == gallery.length  - 1){
+                nextBtn.style.display = 'none';
+            }
+
             prevBtn.onclick= () =>{
                 newIndex--;
                 if(newIndex == 0){
                     preview();
+                    prevBtn.style.display = 'none';
                 }
                 else{
                     preview();
+                    nextBtn.style.display = 'block';
                 }
             };
         
@@ -35,9 +45,11 @@ window.onload = function(){
                 newIndex++;
                 if(newIndex == gallery.length  - 1){
                     preview();
+                    nextBtn.style.display = 'none';
                 } 
                 else {
                     preview();
+                    prevBtn.style.display = 'block';
                 }
             };
             preview();

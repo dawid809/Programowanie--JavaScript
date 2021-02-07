@@ -2,7 +2,8 @@
 const gallery = document.querySelectorAll('.gallery img');
 let lightbox = document.querySelector('.lightbox');
 const img = document.querySelector('.lightbox img');
-
+const prevBtn = document.querySelector('.arrow-prev');
+const nextBtn = document.querySelector('.arrow-next');
 
 window.onload = function(){
     for (let idx = 0; idx < gallery.length; idx++) {
@@ -11,9 +12,35 @@ window.onload = function(){
         gallery[idx].onclick= (ev) =>{
             console.log(ev.target);
            
-            // Przypisanie zdjęcia do source
-            let selectedImgUrl = gallery[newIndex].src;
-            img.src = selectedImgUrl;
+            
+            function preview(){
+                // Przypisanie zdjęcia do source
+                let selectedImgUrl = gallery[newIndex].src;
+                img.src = selectedImgUrl;
+                console.log('Img index = ' + newIndex);
+                console.log(img.src);
+            }
+             
+            prevBtn.onclick= () =>{
+                newIndex--;
+                if(newIndex == 0){
+                    preview();
+                }
+                else{
+                    preview();
+                }
+            };
+        
+            nextBtn.onclick= () =>{
+                newIndex++;
+                if(newIndex == gallery.length  - 1){
+                    preview();
+                } 
+                else {
+                    preview();
+                }
+            };
+            preview();
             
             lightbox.classList.add('visible');
 

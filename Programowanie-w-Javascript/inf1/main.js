@@ -1,6 +1,6 @@
 // pobranie referencji
 const gallery = document.querySelectorAll('.gallery img');
-const galleryCount = gallery.length;
+
 // zapisanie się na zdarzenie click
 for (let idx = 0; idx < gallery.length; idx++) {
     const img = gallery[idx];

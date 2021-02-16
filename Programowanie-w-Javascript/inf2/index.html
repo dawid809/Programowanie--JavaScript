@@ -11,40 +11,44 @@
 <body>
     <h1>Drum Kit</h1>
     <div id="audio-box">
-        <audio src="sounds/boom.wav" controls id="boom">A</audio>
-        <audio src="sounds/clap.wav" controls id="clap">S</audio>
-        <audio src="sounds/hihat.wav" controls id="hihat">D</audio>
-        <audio src="sounds/kick.wav" controls id="kick">F</audio>
-        <audio src="sounds/openhat.wav" controls id="openhat">G</audio>
-        <audio src="sounds/ride.wav" controls id="ride">H</audio>
-        <audio src="sounds/snare.wav" controls id="snare">J</audio>
-        <audio src="sounds/tink.wav" controls id="tink">K</audio>
-        <audio src="sounds/tom.wav" controls id="tom">L</audio>
+        <div class="pad">A<audio src="sounds/boom.wav" id="boom"></audio></div>
+        <div class="pad">S<audio src="sounds/clap.wav" id="clap"></audio></div>
+        <div class="pad">D<audio src="sounds/hihat.wav" id="hihat"></audio></div>
+        <div class="pad">F<audio src="sounds/kick.wav" id="kick"></audio></div>
+        <div class="pad">G<audio src="sounds/openhat.wav" id="openhat"></audio></div>
+        <div class="pad">H<audio src="sounds/ride.wav" id="ride"></audio></div>
+        <div class="pad">J<audio src="sounds/snare.wav" id="snare"></audio></div>
+        <div class="pad">K<audio src="sounds/tink.wav" id="tink"></audio></div>
+        <div class="pad">L<audio src="sounds/tom.wav" id="tom"></audio></div>
     </div>
-    <div id="btn-box1">
-        <button id="recordBtn1">Record</button>
-        <button id="playBtn1">Play</button>
-        <button id="resetBtn1">Reset</button>
-    </div>
+    <div id=container>
+    <div id="btn-container">
+        <div id="btn-box1">
+            <button id="recordBtn1">Record</button>
+            <button id="playBtn1">Play</button>
+            <button id="resetBtn1">Reset</button>
+        </div>
 
-    <div id="btn-box2">
-        <button id="recordBtn2">Record</button>
-        <button id="playBtn2">Play</button>
-        <button id="resetBtn2">Reset</button>
-    </div>
+        <div id="btn-box2">
+            <button id="recordBtn2">Record</button>
+            <button id="playBtn2">Play</button>
+            <button id="resetBtn2">Reset</button>
+        </div>
 
-    <div id="btn-box3">
-        <button id="recordBtn3">Record</button>
-        <button id="playBtn3">Play</button>
-        <button id="resetBtn3">Reset</button>
-    </div>
+        <div id="btn-box3">
+            <button id="recordBtn3">Record</button>
+            <button id="playBtn3">Play</button>
+            <button id="resetBtn3">Reset</button>
+        </div>
 
-    <div id="btn-box4">
-        <button id="recordBtn4">Record</button>
-        <button id="playBtn4">Play</button>
-        <button id="resetBtn4">Reset</button>
+        <div id="btn-box4">
+            <button id="recordBtn4">Record</button>
+            <button id="playBtn4">Play</button>
+            <button id="resetBtn4">Reset</button>
+        </div>
     </div>
-
+    <div id="temp"></div>
+</div>
     <script src="main.js" type="text/javascript"></script>
 </body>
 

@@ -1,11 +1,21 @@
+/* eslint-disable no-undef */
 // pobranie referencji
 document.body.addEventListener('keypress', onKeyPress);
-document.querySelector('#recordBtn').addEventListener('click', onRecordBtn);
-document.querySelector('#playBtn').addEventListener('click', onPlayBtn);
-document.querySelector('#resetBtn').addEventListener('click', onResetBtn);
+document.querySelector('#recordBtn1').addEventListener('click', onRecordBtn1);
+document.querySelector('#playBtn1').addEventListener('click', onPlayBtn1);
+document.querySelector('#resetBtn1').addEventListener('click', onResetBtn1);
 
-let recordedSound=[];
-let recordStartTime;
+document.querySelector('#recordBtn2').addEventListener('click', onRecordBtn2);
+document.querySelector('#playBtn2').addEventListener('click', onPlayBtn2);
+document.querySelector('#resetBtn2').addEventListener('click', onResetBtn2);
+let recordedSound1=[];
+let recordStartTime1;
+
+let recordedSound2=[];
+let recordStartTime2;
+
+let rec1=false;
+let rec2=false;
 
 function onKeyPress(ev){
     let soundId;
@@ -39,13 +49,24 @@ function onKeyPress(ev){
         break;
     }
     console.log(ev.code);
+    playSound(soundId);
     if(soundId){
-        const soundTime=Date.now()-recordStartTime;
-        const soundObj={
-            soundId:soundId,
-            time:soundTime};
-        playSound(soundId);
-        recordedSound.push(soundObj);
+        if (rec1){
+            soundTime=Date.now()-recordStartTime1;
+            let soundObj={
+                soundId:soundId,
+                time:soundTime
+            };
+            recordedSound1.push(soundObj);
+        }
+        if (rec2){
+            soundTime=Date.now()-recordStartTime2;
+            let soundObj={
+                soundId:soundId,
+                time:soundTime
+            };
+            recordedSound2.push(soundObj);
+        }
     }
 }
 
@@ -54,14 +75,16 @@ function playSound(soundId){
     sound.play();
 }
 
-function onRecordBtn(){
-    recordStartTime=Date.now();
-    recordedSound=[];
+function onRecordBtn1(){
+    recordStartTime1=Date.now();
+    recordedSound1=[];
+    rec1=true;
 }
 
-function onPlayBtn(){
-    for (let index = 0; index < recordedSound.length; index++) {
-        const soundObj=recordedSound[index];
+function onPlayBtn1(){
+    rec1=false;
+    for (let index = 0; index < recordedSound1.length; index++) {
+        const soundObj=recordedSound1[index];
         setTimeout(()=>{
             playSound(soundObj.soundId);
         },
@@ -70,7 +93,30 @@ function onPlayBtn(){
     }    
 }
 
-function onResetBtn(){
-    recordedSound = [];
-    recordStartTime=0;
+function onResetBtn1(){
+    recordedSound1 = [];
+    recordStartTime1=0;
+}
+
+function onRecordBtn2(){
+    recordStartTime2=Date.now();
+    recordedSound2=[];
+    rec2=true;
+}
+
+function onPlayBtn2(){
+    rec2=false;
+    for (let index = 0; index < recordedSound2.length; index++) {
+        const soundObj=recordedSound2[index];
+        setTimeout(()=>{
+            playSound(soundObj.soundId);
+        },
+        soundObj.time
+        );
+    }    
+}
+
+function onResetBtn2(){
+    recordedSound2 = [];
+    recordStartTime2=0;
 }

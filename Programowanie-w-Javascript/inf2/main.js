@@ -198,3 +198,39 @@ function onResetBtn4(){
     recordedSound4 = [];
     recordStartTime4=0;
 }
+
+// pobranie referencji 
+document.querySelector('#play-channels').addEventListener('click', playChannels);
+document.querySelector('#reset-channels').addEventListener('click', resetChannels);
+
+function playChannels(){
+    let c1=document.getElementById('chanel1').checked;
+    let c2=document.getElementById('chanel2').checked;
+    let c3=document.getElementById('chanel3').checked;
+    let c4=document.getElementById('chanel4').checked;
+    if(c1){
+        onPlayBtn1();
+    }
+    if(c2){
+        onPlayBtn2();
+    }
+    if(c3){
+        onPlayBtn3();
+    }
+    if(c4){
+        onPlayBtn4();
+    }
+    console.log(c1);
+}
+
+function resetChannels()
+{
+    var uncheck=document.getElementsByTagName('input');
+    for(var i=0;i<uncheck.length;i++)
+    {
+        if(uncheck[i].type=='checkbox')
+        {
+            uncheck[i].checked=false;
+        }
+    }
+}

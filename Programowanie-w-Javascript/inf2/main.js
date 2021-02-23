@@ -65,6 +65,7 @@ function onKeyPress(ev){
         break;
     }
     console.log(ev.code);
+    KeyAnimation(soundId);
     playSound(soundId);
     if(soundId){
         if (rec1){
@@ -230,4 +231,54 @@ function resetChannels(){
             uncheck[i].checked=false;
         }
     }
+}
+
+function KeyAnimation(soundId){
+    let cont = document.getElementsByClassName('audio-box')[0];
+    let i0=cont.getElementsByClassName('pad')[0];
+    let i1=cont.getElementsByClassName('pad')[1];
+    let i2=cont.getElementsByClassName('pad')[2];
+    let i3=cont.getElementsByClassName('pad')[3];
+    let i4=cont.getElementsByClassName('pad')[4];
+    let i5=cont.getElementsByClassName('pad')[5];
+    let i6=cont.getElementsByClassName('pad')[6];
+    let i7=cont.getElementsByClassName('pad')[7];
+    let i8=cont.getElementsByClassName('pad')[8];
+    if(soundId == 'boom'){
+        i0.classList.add('visible');
+        setTimeout(function(){ i0.classList.remove('visible'); }, 500);
+    }
+    else if(soundId == 'clap'){
+        i1.classList.add('visible');
+        setTimeout(function(){ i1.classList.remove('visible'); }, 500);
+    }
+    else if(soundId == 'hihat'){
+        i2.classList.add('visible');
+        setTimeout(function(){ i2.classList.remove('visible'); }, 500);
+    }
+    else if(soundId == 'kick'){
+        i3.classList.add('visible');
+        setTimeout(function(){ i3.classList.remove('visible'); }, 500);
+    }
+    else if(soundId == 'openhat'){
+        i4.classList.add('visible');
+        setTimeout(function(){ i4.classList.remove('visible'); }, 500);
+    }
+    else if(soundId == 'ride'){
+        i5.classList.add('visible');
+        setTimeout(function(){ i5.classList.remove('visible'); }, 500);
+    }
+    else if(soundId == 'snare'){
+        i6.classList.add('visible');
+        setTimeout(function(){ i6.classList.remove('visible'); }, 500);
+    }
+    else if(soundId == 'tink'){
+        i7.classList.add('visible');
+        setTimeout(function(){ i7.classList.remove('visible'); }, 500);
+    }
+    else if(soundId == 'tom'){
+        i8.classList.add('visible');
+        setTimeout(function(){ i8.classList.remove('visible'); }, 500);
+    }
+   
 }

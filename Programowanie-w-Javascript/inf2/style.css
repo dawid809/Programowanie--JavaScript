@@ -1,8 +1,9 @@
 body {
     background: radial-gradient(circle, rgba(129, 137, 181, 1) 10%, rgba(27, 57, 92, 1) 100%);
+    color: rgb(207, 207, 216);
 }
 
-#audio-box {
+.audio-box {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,6 +26,8 @@ div[class^="pad"]{
     background-color: #DDDDDD;
     border-radius: 24px;
     font-size: 80px;
+    border: rgb(45, 65, 65) 5px solid;
+    color: black;
 }
 
 div[id^="pad"]{
@@ -62,10 +65,11 @@ button {
     width: auto;
     margin: 0px 10px;
     border-radius: 24px;
-    background: rgb(216, 16, 16);
+    background: rgb(108, 156, 180);
     font-size: 24px;
     font-weight: bold;
     outline: none;
+    border: rgb(153, 25, 32) 3px solid;
 }
 
 button:hover {
@@ -117,6 +121,12 @@ input[type="checkbox"] {
 #play-channels,
 #reset-channels {
     background-color: rgb(187, 26, 26);
+    border: tomato solid;
+}
+
+#play-channels:hover,
+#reset-channels:hover {
+    background-color: rgb(206, 224, 224);
 }
 
 .record{
@@ -134,4 +144,11 @@ input[type="checkbox"] {
 }
 div,h1{
     cursor: default;
+}
+
+.visible{
+    background: darkgrey !important;
+    transform: scale(1.1) !important;
+ border: snow solid 5px !important;
+ color: yellow;
 }

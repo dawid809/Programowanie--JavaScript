@@ -65,10 +65,13 @@ function onKeyPress(ev){
         break;
     }
     console.log(ev.code);
+    
     KeyAnimation(soundId);
     playSound(soundId);
+
     if(soundId){
         if (rec1){
+            // Tworzy obiekt i dodaje do na kanał 1
             let soundTime=Date.now()-recordStartTime1;
             let soundObj={
                 soundId:soundId,
@@ -103,17 +106,20 @@ function onKeyPress(ev){
     }
 }
 
+// Odtwarza pojedyncze dzwięki na podstawie id klawisza
 function playSound(soundId){
     const sound = document.querySelector('#' + soundId);  
     sound.play();
 }
 
+// Nagrywa w dźwięki na kanale 1
 function onRecordBtn1(){
     recordStartTime1=Date.now();
     recordedSound1=[];
     rec1=true;
 }
 
+// Odtwarza wszystkie dźwięki kanału 1
 function onPlayBtn1(){
     rec1=false;
     for (let index = 0; index < recordedSound1.length; index++) {
@@ -126,6 +132,7 @@ function onPlayBtn1(){
     }    
 }
 
+// Resetuje nam kanał 1
 function onResetBtn1(){
     recordedSound1 = [];
     recordStartTime1=0;
@@ -204,6 +211,7 @@ function onResetBtn4(){
 document.querySelector('#play-channels').addEventListener('click', playChannels);
 document.querySelector('#reset-channels').addEventListener('click', resetChannels);
 
+// Pozwala na odwtorzenie kilku kanałów na raz
 function playChannels(){
     let c1=document.getElementById('chanel1').checked;
     let c2=document.getElementById('chanel2').checked;
@@ -224,6 +232,7 @@ function playChannels(){
     console.log(c1);
 }
 
+// Usuwa zaznaczenia w checkboxie
 function resetChannels(){
     let uncheck=document.getElementsByTagName('input');
     for(let i=0;i<uncheck.length;i++){
@@ -233,6 +242,7 @@ function resetChannels(){
     }
 }
 
+// Dodaje animacje po wciśnięciu odpowiedniego klawisza
 function KeyAnimation(soundId){
     let cont = document.getElementsByClassName('audio-box')[0];
     let i0=cont.getElementsByClassName('pad')[0];

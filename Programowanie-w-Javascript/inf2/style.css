@@ -17,7 +17,17 @@ h1 {
     font-size: 100px;
 }
 
-.pad {
+div[class^="pad"]{
+    padding: 10px;
+    margin: 20px;
+    min-width: 100px;
+    text-align: center;
+    background-color: #DDDDDD;
+    border-radius: 24px;
+    font-size: 80px;
+}
+
+div[id^="pad"]{
     padding: 10px;
     margin: 20px;
     min-width: 100px;
@@ -76,7 +86,7 @@ button:hover {
     float: left;
     width: 70%;
     height: auto;
-    margin-left: 100px;
+    margin-left: 30px;
     padding: 30px;
     border-bottom: dashed black 2px;
 }
@@ -107,4 +117,21 @@ input[type="checkbox"] {
 #play-channels,
 #reset-channels {
     background-color: rgb(187, 26, 26);
+}
+
+.record{
+    min-width: 60px;
+    min-height: 60px;
+    border-radius: 50%;
+    float: left;
+    background-color: rgb(122, 36, 36);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-right: rgb(39, 42, 51) solid 4px;
+    margin-left: 50px;
+}
+div,h1{
+    cursor: default;
 }

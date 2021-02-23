@@ -103,7 +103,7 @@ function onKeyPress(ev){
 }
 
 function playSound(soundId){
-    const sound = document.querySelector('#' + soundId);
+    const sound = document.querySelector('#' + soundId);  
     sound.play();
 }
 
@@ -223,13 +223,10 @@ function playChannels(){
     console.log(c1);
 }
 
-function resetChannels()
-{
-    var uncheck=document.getElementsByTagName('input');
-    for(var i=0;i<uncheck.length;i++)
-    {
-        if(uncheck[i].type=='checkbox')
-        {
+function resetChannels(){
+    let uncheck=document.getElementsByTagName('input');
+    for(let i=0;i<uncheck.length;i++){
+        if(uncheck[i].type=='checkbox'){
             uncheck[i].checked=false;
         }
     }

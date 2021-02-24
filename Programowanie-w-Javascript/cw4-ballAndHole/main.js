@@ -20,19 +20,20 @@ function  onDeviceMove(ev) {
 }
 
 // tworzenie kuli
-function Circle(x, y, dx, dy, radius) {
+function Circle(x, y, dx, dy, radius, color) {
     this.x = x;
     this.y = y;  
     this.dx = dx;
     this.dy = dy;     
     this.radius=radius;
+    this.color=color;
     this.draw = function () {
         context.beginPath();
-        context.fillStyle='red';
-        //console.log('ref',x,y);
+        context.fillStyle=this.color;
+
         context.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
         context.fill();
-        context.stroke();
+        
     };
     //  zmiana kierunku ruchu kuli
     this.update = function () {
@@ -53,16 +54,30 @@ function Circle(x, y, dx, dy, radius) {
     };
 }
 
-let ball = new Circle(100, 100, 3, 2, 50);
-let hole = new Circle(144, 343, 0, 0, 60);
+// twierdzenie pitagorasa - sprawdza odleglosc od siebie 2 obiektow
+function getDistance(x1 , y1, x2, y2) {
+    let xDistance = x2 - x1;
+    let yDistance = y2 - y1;
+
+    return Math.sqrt(Math.pow(xDistance, 2) + Math.pow(yDistance, 2));
+}
+
+let ball = new Circle(100, 100, 3, 2, 50, 'blue');
+let hole = new Circle(300, 300, 0, 0, 80, 'green');
+
 ball.draw();
 hole.draw();
 
 function animate() {
     requestAnimationFrame(animate);
-    context.clearRect(0,0, windowWidth, windowHeight);
+    context.clearRect(0, 0, windowWidth, windowHeight);
     ball.update();
     hole.update();
+
+    console.log(getDistance(ball.x, ball.y, hole.x, hole.y));
+
+    if(getDistance(ball.x, ball.y, hole.x, hole.y) < ball.radius + hole.radius) hole.color='red';
+    else hole.color = 'green';
 }
 
 animate();

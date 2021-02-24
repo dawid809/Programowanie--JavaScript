@@ -11,9 +11,12 @@ canvas.width=windowWidth;
 canvas.height=windowHeight;
 canvas.style.background='#afd888';
 
-
+let beta  = 0;
+let gamma = 0;
 function  onDeviceMove(ev) {
     console.log(ev.alpha, ev.beta, ev.gamma);
+    beta=ev.beta/80;
+    gamma=ev.gamma/180;
 }
 
 // tworzenie kuli
@@ -26,7 +29,7 @@ function Circle(x, y, dx, dy, radius) {
     this.draw = function () {
         context.beginPath();
         context.fillStyle='red';
-        console.log('ref');
+        //console.log('ref',x,y);
         context.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
         context.fill();
         context.stroke();
@@ -42,21 +45,24 @@ function Circle(x, y, dx, dy, radius) {
         {
             this.dy = -this.dy;
         }
-        this.x += this.dx;
-        this.y += this.dy;
+        this.x += gamma*dx;
+        this.y += beta*dy;
+        
 
         this.draw();
     };
 }
 
 let ball = new Circle(100, 100, 3, 2, 50);
+let hole = new Circle(144, 343, 0, 0, 60);
 ball.draw();
+hole.draw();
 
 function animate() {
     requestAnimationFrame(animate);
     context.clearRect(0,0, windowWidth, windowHeight);
     ball.update();
-
+    hole.update();
 }
 
 animate();

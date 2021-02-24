@@ -45,8 +45,8 @@ function Circle(x, y, dx, dy, radius) {
         {
             this.dy = -this.dy;
         }
-        this.x += gamma*dx;
-        this.y += beta*dy;
+        this.x += this.dx*gamma;
+        this.y += this.dy*beta;
         
 
         this.draw();

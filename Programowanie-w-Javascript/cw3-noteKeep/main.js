@@ -15,23 +15,29 @@ if(notesFromStorage != null){
 
 // dodawanie notatek
 function onNewNote() {
-    let title = document.querySelector('#noteTitle').value;
-    let content = document.querySelector('#noteContent').value;
-    console.log(title,content);
+    let addTitle = document.querySelector('#noteTitle').value;
+    let addContent = document.querySelector('#noteContent').value;
+    console.log(addTitle,addContent);
 
-    notes=notesFromStorage;
+    
+    if (notesFromStorage == null){
+        notes = [];
+    }else{
+        notes=notesFromStorage;
+    }
+   
 
     // obiekt notatki
     let note ={
-        title: 'notatka tytuł',
-        content: 'zawartość',
+        title: addTitle,
+        content: addContent,
         colour: 'black',
         pinned: false,
         createDate: new Date() 
     };
 
-    note.title=title;
-    note.content=content;
+    note.title=addTitle;
+    note.content=addContent;
     //note.createDate = new Date();
 
     notes.push(note);
@@ -42,7 +48,12 @@ function onNewNote() {
 
 function showNotes() {
     
-    notes=notesFromStorage;
+    
+    if (notesFromStorage == null){
+        notes = [];
+    }else{
+        notes=notesFromStorage;
+    }
     
     let htmlNote='';
     notes.forEach(function (element,index) {
@@ -51,8 +62,6 @@ function showNotes() {
         <h2>${element.title}</h2>
         <p>${element.content}</p>
         <h4>${element.createDate.toLocaleString()}</h4>
-        <button id ="${index}" onclick ="edit(this.id)"
-        class="editNote">Edit</button>
         <button id ="${index}" onclick ="deleteNote(this.id)"
         class="deleteNote">Delete</butto>
         </section>

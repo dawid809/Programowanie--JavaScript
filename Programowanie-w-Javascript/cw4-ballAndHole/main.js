@@ -25,7 +25,7 @@ let colisionCounter = 0;
 
 function  onDeviceMove(ev) {
     console.log(ev.alpha, ev.beta, ev.gamma);
-    beta=ev.beta/80;
+    beta=ev.beta/180;
     gamma=ev.gamma/180;
 }
 
@@ -114,7 +114,7 @@ let ball = new Circle(windowWidth*0.1, windowHeight*0.5, 3, 2, 50, '#166B8C');
 let hole = new Circle(windowWidth*0.9, windowHeight*0.5, 0, 0, 80, '#222326');
 let avtiveTrap1 = new Trap(windowWidth*0.25, windowHeight*0.7, 0, 5,windowHeight*0.05, activeTrapColor);
 let avtiveTrap2 = new Trap(windowWidth*0.7, windowHeight*0.4, 0, 3, windowHeight*0.1, activeTrapColor);
-let passiveTrap1 = new Trap(windowWidth*0.5, windowHeight*0.8, 0, 0, windowHeight*0.1, passiveTrapColor);
+let passiveTrap1 = new Trap(windowWidth*0.5, windowHeight*0.8, 0, 0, windowHeight*0.15, passiveTrapColor);
 let passiveTrap2 = new Trap(windowWidth*0.5, windowHeight*0.2, 0, 0, windowHeight*0.15, passiveTrapColor);
 
 let time= new Date();

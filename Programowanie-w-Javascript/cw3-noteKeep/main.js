@@ -5,10 +5,13 @@ document.querySelector('#addBtn').addEventListener('click', onNewNote);
 
 // odczytanie tablicy notatek z localStorage
 let notesFromStorage = JSON.parse(localStorage.getItem(localStorageKey));
-notes = notesFromStorage.map(note => {
-    note.createDate = new Date(note.createDate);
-    return note;
-});
+
+if(notesFromStorage != null){
+    notes = notesFromStorage.map(note => {
+        note.createDate = new Date(note.createDate);
+        return note;
+    });
+}
 
 // dodawanie notatek
 function onNewNote() {
@@ -16,13 +19,9 @@ function onNewNote() {
     let content = document.querySelector('#noteContent').value;
     console.log(title,content);
 
-    if (notesFromStorage == null){
-        notes = [];
-    }else{
-        notes=notesFromStorage;
-    }
+    notes=notesFromStorage;
 
-    // nowa notatka
+    // obiekt notatki
     let note ={
         title: 'notatka tytuł',
         content: 'zawartość',
@@ -33,28 +32,18 @@ function onNewNote() {
 
     note.title=title;
     note.content=content;
-    note.createDate = new Date();
+    //note.createDate = new Date();
 
     notes.push(note);
     notes = localStorage.setItem(localStorageKey, JSON.stringify(notes));
 
-    title.value='';
-    content.value='';
-
     showNotes();
 }
 
-
-
-
-
 function showNotes() {
     
-    if (notesFromStorage == null){
-        notes = [];
-    }else{
-        notes=notesFromStorage;
-    }
+    notes=notesFromStorage;
+    
     let htmlNote='';
     notes.forEach(function (element,index) {
         htmlNote +=`
@@ -64,15 +53,22 @@ function showNotes() {
         <h4>${element.createDate.toLocaleString()}</h4>
         <button id ="${index}" onclick ="edit(this.id)"
         class="editNote">Edit</button>
-        <button id ="${index}" onclick ="delete(this.id)"
+        <button id ="${index}" onclick ="deleteNote(this.id)"
         class="deleteNote">Delete</butto>
         </section>
     `;
         let main=document.querySelector('main');
-        if(notes.length!=0)
-            main.innerHTML = htmlNote;
-        else   main.innerHTML='biasdda';
+      
+        main.innerHTML = htmlNote;
     });
+}
+
+// eslint-disable-next-line no-unused-vars
+function  deleteNote(index) {
+    
+    notes.splice(index,1);
+    localStorage.setItem(localStorageKey, JSON.stringify(notes));
+    showNotes();
 }
 
 showNotes();

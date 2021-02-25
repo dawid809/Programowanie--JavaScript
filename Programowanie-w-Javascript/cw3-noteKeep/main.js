@@ -3,12 +3,6 @@ let notes=[];
 
 document.querySelector('#addBtn').addEventListener('click', onNewNote);
 
-function onNewNote() {
-    const title = document.querySelector('#noteTitle').value;
-    const content = document.querySelector('#noteContent').value;
-    console.log(title,content);
-}
-
 // nowa notatka
 const note ={
     title: 'notatka tytuł',
@@ -19,9 +13,18 @@ const note ={
 };
 
 // dodawanie notatek
-notes.push(note);
-notes.push(note);
-notes.push(note);
+function onNewNote() {
+    const title = document.querySelector('#noteTitle').value;
+    const content = document.querySelector('#noteContent').value;
+    console.log(title,content);
+
+    note.content=content;
+    note.title=title;
+
+    notes.push(note);
+
+    showNotes();
+}
 
 // tablica zapisana w localStorage
 localStorage.setItem(localStorageKey, JSON.stringify(notes));
@@ -33,16 +36,21 @@ notes = notesFromStorage.map(note => {
     return note;
 });
 
-// zmiana html-a z pozoimu js-a 
-for (let note of notes){
-    const htmlNote =`
+function showNotes() {
+    notes.forEach(function (element,index) {
+        const main=document.querySelector('main');
+        const htmlNote =`
         <section class="note">
-        <h2>${note.title}</h2>
-        <p>${note.content}</p>
-        <h4>${note.createDate.toLocaleString()}</h4>
+        <h2>${element.title}</h2>
+        <p>${element.content}</p>
+        <h4>${element.createDate.toLocaleString()}</h4>
+        <button id ="${index}" onclick ="edit(this.id)"
+        class="editNote">Edit</button>
+        <button id ="${index}" onclick ="delete(this.id)"
+        class="deleteNote">Delete</butto>
         </section>
     `;
-    const main=document.querySelector('main');
-    main.innerHTML += htmlNote;
+        main.innerHTML += htmlNote;
+    });
 }
 

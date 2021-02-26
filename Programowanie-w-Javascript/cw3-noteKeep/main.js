@@ -17,6 +17,11 @@ if(notesFromStorage != null){
 function onNewNote() {
     let addTitle = document.querySelector('#noteTitle').value;
     let addContent = document.querySelector('#noteContent').value;
+    let selectColor = document.querySelector('#noteColor').value;
+
+    if(addTitle == '' || addContent == ''){
+        return alert('Podaj tytuł i zawartość!');
+    }
     console.log(addTitle,addContent);
 
     
@@ -31,11 +36,10 @@ function onNewNote() {
     let note ={
         title: addTitle,
         content: addContent,
-        colour: 'black',
+        colour: selectColor,
         pinned: false,
         createDate: new Date() 
     };
-
     note.title=addTitle;
     note.content=addContent;
     //note.createDate = new Date();
@@ -58,12 +62,12 @@ function showNotes() {
     let htmlNote='';
     notes.forEach(function (element,index) {
         htmlNote +=`
-        <section class="note">
+        <section class="note" style="background-color:${element.colour};">
         <h2>${element.title}</h2>
         <p>${element.content}</p>
         <h4>${element.createDate.toLocaleString()}</h4>
         <button id ="${index}" onclick ="deleteNote(this.id)"
-        class="deleteNote">Delete</butto>
+        class="deleteNote">Delete</button>
         </section>
     `;
         let main=document.querySelector('main');

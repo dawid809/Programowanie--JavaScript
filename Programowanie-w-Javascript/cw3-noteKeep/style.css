@@ -1,0 +1,83 @@
+body{
+    background-color: rgb(156, 216, 196);
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h1{
+    font-size: 72px;
+    text-align: center;
+    border-bottom: 2px solid ;
+    padding-bottom: 10px;
+}
+
+#topContainer{
+
+}
+
+#titleContainer,
+#contentContainer,
+#editContainer{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#titleContainer{
+
+}
+
+#contentContainer{
+ 
+}
+
+#editContainer{
+   
+}
+
+#noteContent,
+#noteTitle{
+color:black;
+font-size: 24px;
+min-height: 50px;
+width: 200px;
+padding: 10px;
+}
+
+#noteContent{
+    font-size: 16px;
+    min-height: 80px;
+}
+.noteText{
+    font-size: 48px;
+    padding: 10px;
+}
+
+#noteColor,
+#addBtn{
+width: 100px;
+height: 50px;
+}
+
+.note{
+    font-size: 10px;
+}
+
+h2{
+    font-size: 24px;
+}
+
+p{
+    font-size: 14px;
+}
+
+h4{
+    font-size: 10px;
+}
+
+.deleteNote{
+    color: red;
+}

@@ -63,11 +63,11 @@ function showNotes() {
     notes.forEach(function (element,index) {
         htmlNote +=`
         <section class="note" style="background-color:${element.colour};">
-        <h2>${element.title}</h2>
+        <h2>${index+1}. ${element.title}</h2>
         <p>${element.content}</p>
-        <h4>${element.createDate.toLocaleString()}</h4>
+        <h4>Date: ${element.createDate.toLocaleString()}</h4>
         <button id ="${index}" onclick ="deleteNote(this.id)"
-        class="deleteNote">Delete</button>
+        class="deleteNoteBtn">Delete</button>
         </section>
     `;
         let main=document.querySelector('main');

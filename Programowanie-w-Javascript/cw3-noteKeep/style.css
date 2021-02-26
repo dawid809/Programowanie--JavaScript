@@ -76,32 +76,37 @@ h1 {
     max-width: 20%;
     margin: 20px;
     height: auto;
+    word-wrap: break-word;
 }
 
 .note>* {
     margin-left: 20px;
+    margin-right: 20px;
 }
 
 h2 {
     font-size: 26px;
     font-weight: 900;
-    text-align: center;
 }
 
 p {
+    border-top: 1px dotted #284D5B;
+    padding-top: 10px;
     font-size: 16px;
     min-height: 50px;
 }
 
 h4 {
+    border-top: 1px dotted #284D5B;
+    padding-top: 10px;
     font-size: 12px;
     font-style: italic;
 }
 
 .deleteNoteBtn {
     outline: none;
-    background-color: #887b6a;
-    color: #ccc7b8;
+    background-color: #284D5B;
+    color: rgb(230, 213, 213);
     font-size: 18px;
     margin-bottom: 15px;
     min-width: 100px;
@@ -111,6 +116,5 @@ h4 {
 }
 
 .deleteNoteBtn:hover {
-    color: #c5bfac;
-    background-color: #9b8975;
+    background-color: #3A808A;
 }

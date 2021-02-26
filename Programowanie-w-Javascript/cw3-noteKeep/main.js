@@ -82,6 +82,10 @@ function  deleteNote(index) {
     notes.splice(index,1);
     localStorage.setItem(localStorageKey, JSON.stringify(notes));
     showNotes();
+
+    // odswieza strone gdy notes(tablica) == null
+    if(index==0 || notesFromStorage == null)  {
+        window.location.reload();}
 }
 
 showNotes();

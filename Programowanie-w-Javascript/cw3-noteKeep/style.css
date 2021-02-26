@@ -1,27 +1,28 @@
-body{
-    background-color: rgb(156, 216, 196);
+body {
+    background-color: #E3DDCA;
     padding: 20px;
     margin-left: auto;
     margin-right: auto;
 }
 
-h1{
+h1 {
     font-size: 72px;
     text-align: center;
-    border-bottom: 2px solid ;
+    border-bottom: 2px solid;
     padding-bottom: 20px;
+    color: #284D5B;
 }
 
-#topContainer{
-border-bottom: 1px solid;
-padding-bottom: 20px;
-width: 90%;
-margin: auto;
+#topContainer {
+    border-bottom: 1px solid #284D5B;
+    padding-bottom: 20px;
+    width: 90%;
+    margin: auto;
 }
 
 #titleContainer,
 #contentContainer,
-#editContainer{
+#editContainer {
     margin: auto;
     width: 50%;
     margin-bottom: 5px;
@@ -29,92 +30,87 @@ margin: auto;
     display: flex;
 }
 
-
-#titleContainer{
- 
-}
-
-#contentContainer{
- 
-}
-
-#editContainer{
-
-}
-
 #noteContent,
-#noteTitle{
+#noteTitle {
     border-radius: 5px;
-color:black;
-font-size: 24px;
-min-height: 50px;
-width: 90%;
-padding-bottom: 20px;
+    background-color: #FDF6F0;
+    font-size: 24px;
+    min-height: 50px;
+    width: 90%;
+    padding-bottom: 20px;
 }
 
-#noteContent{
+#noteContent {
     font-size: 16px;
     min-height: 100px;
 }
 
-#noteColor,
-#addBtn{
-min-width: 120px;
-min-height: 50px;
-margin-right: 20px;
-font-size: 24px;
-border-radius: 12px;
-margin-top: 10px;
+#noteContent:focus,
+#noteTitle:focus {
+    background-color: #f3eade;
+}
 
+#noteColor,
+#addBtn {
+    min-width: 120px;
+    min-height: 50px;
+    margin-right: 20px;
+    font-size: 24px;
+    border-radius: 12px;
+    margin-top: 10px;
+    background-color: #284D5B;
+    color: rgb(230, 213, 213)
 }
 
 #noteColor:hover,
-#addBtn:hover{
-    outline:none;
-color: chartreuse;
-background-color: chocolate;
+#addBtn:hover {
+    outline: none;
+    background-color: #3A808A;
 
 }
 
-.note{
+.note {
     border-radius: 5px;
     display: inline-block;
-    min-width: 15%;
-    max-width:20%;
+    min-width: 20%;
+    max-width: 20%;
     margin: 20px;
-    
+    height: auto;
 }
 
-.note> *{
+.note>* {
     margin-left: 20px;
 }
-h2{
-    font-size: 24px;
+
+h2 {
+    font-size: 26px;
     font-weight: 900;
     text-align: center;
 }
 
-p{
-    font-size: 14px;
+p {
+    font-size: 16px;
     min-height: 50px;
 }
 
-h4{
+h4 {
     font-size: 12px;
     font-style: italic;
 }
 
-.deleteNoteBtn{
-    outline:none;
-    color: red;
+.deleteNoteBtn {
+    outline: none;
+    background-color: #887b6a;
+    color: #ccc7b8;
+    font-size: 18px;
     margin-bottom: 15px;
     min-width: 100px;
-    min-height: 30px;
+    min-height: 20px;
     border-radius: 12px;
+    margin-left: 40px;
 }
 
-.deleteNoteBtn:hover{
-    color: chocolate;
-    background-color: wheat;
+.deleteNoteBtn:hover {
+    color: #c5bfac;
+    background-color: #9b8975;
 }
-

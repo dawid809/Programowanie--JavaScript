@@ -36,12 +36,35 @@ function  drawFlakes() {
         context.arc(f.x, f.y, f.r, 0, Math.PI*2, true);
     }
     context.fill();
+    moveFlakes();
 }
 
-window.onload = function () {
-    drawFlakes();
-};
+let angle = 0;
 
+// animacja śniegu
+function moveFlakes() {
+    angle += 0.01;
+
+    for (let i = 0; i<snowFlakes; i++){
+
+        let f = snowFlakesArray[i];
+
+        f.y += Math.pow(f.s, 2) + 3;
+        f.x += Math.sin(angle) * 2;
+
+        // jeśli śnieżka dotknie dołu, to zmienia położenie na góre
+        if(f.y > windowHeight){
+            snowFlakesArray[i] = {
+                x: Math.random() * windowWidth, y: 0, r: f.r, s: f.s
+            };
+        }
+    }
+}
+
+// wywołuj funkcje drawFlakes co 15 ms po wczytaniu strony
+window.onload = function () {
+    setInterval(drawFlakes, 15);
+};
 
 
 

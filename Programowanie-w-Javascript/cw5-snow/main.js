@@ -5,10 +5,9 @@ const context = canvas.getContext('2d');
 let windowWidth = window.innerWidth ;
 let windowHeight = window.innerHeight;
 
-// przypisanie rozmiarow canvas oraz kolor tla
+// przypisanie rozmiarow canvas
 canvas.width = windowWidth;
 canvas.height = windowHeight;
-canvas.style.background = '#193340';
 
 // deklaracja maksymalnej ilośći snieżek oraz tablicy
 let snowFlakes = 150;
@@ -18,7 +17,7 @@ for(let i = 0; i < snowFlakes; i++){
     snowFlakesArray.push({
         x: Math.random() * windowWidth,
         y: Math.random() * windowHeight,
-        r: Math.random() * 7 + 2,
+        r: Math.random() * 6 + 2,
         s: Math.random() + 1
     });
 }
@@ -26,7 +25,7 @@ for(let i = 0; i < snowFlakes; i++){
 // rysuje płatki śniegu
 function  drawFlakes() {
     context.clearRect(0, 0, windowWidth, windowHeight);
-    context.fillStyle =  'snow';
+    context.fillStyle =  'rgba(255,255,255,0.7';
     context.beginPath();
 
     for(let i = 0; i < snowFlakes; i++)
@@ -49,7 +48,7 @@ function moveFlakes() {
 
         let f = snowFlakesArray[i];
 
-        f.y += Math.pow(f.s, 2) + 3;
+        f.y += Math.pow(f.s, 2) + 4;
         f.x += Math.sin(angle) * 2;
 
         // jeśli śnieżka dotknie dołu, to zmienia położenie na góre

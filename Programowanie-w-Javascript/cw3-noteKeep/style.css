@@ -118,3 +118,13 @@ h4 {
 .deleteNoteBtn:hover {
     background-color: #3A808A;
 }
+
+/* #topContainer{
+    position: fixed;
+    height: 300px;
+    top: 0px;
+    width: 100%;
+    z-index: 100;
+    transition: all .3s ease;
+    background-color: tomato;
+} */

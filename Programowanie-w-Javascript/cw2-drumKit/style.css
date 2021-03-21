@@ -21,11 +21,11 @@ h1 {
 div[class^="pad"]{
     padding: 10px;
     margin: 20px;
-    min-width: 100px;
+    min-width: 5%;
     text-align: center;
     background-color: #DDDDDD;
     border-radius: 24px;
-    font-size: 80px;
+    font-size: 70px;
     border: rgb(45, 65, 65) 5px solid;
     color: black;
 }
@@ -60,10 +60,10 @@ div[id^="pad"]{
 }
 
 button {
-    min-width: 120px;
+    min-width: 100px;
     min-height: 60px;
     width: auto;
-    margin: 0px 10px;
+    margin: 5px 10px;
     border-radius: 24px;
     background: rgb(108, 156, 180);
     font-size: 24px;
@@ -102,6 +102,7 @@ button:hover {
     font-size: 50px;
     text-align: center;
     border-bottom: dashed black 5px;
+    padding-bottom: 20px;
 }
 
 label {

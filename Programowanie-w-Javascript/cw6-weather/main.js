@@ -17,9 +17,33 @@ function GetDataFromAPI() {
 
     // Otrzymanie danych z API (fetch)
     fetch(apiUrl)
-        .then(res => res.json())
         .then(data =>{
-            console.log(data);
-        })
-        .catch(error => console.log("Błąd: ", error));
+            return data.json();
+        }).then(showWeatherReport)
+        // .catch(error => console.log('Błąd: ', error));
+        .catch(error => console.log('Błąd: ', error)).innerHTML='Zła nazaww misata';
 }
+
+function  showWeatherReport(data) {
+    console.log(data);
+    // Wyczyszczenie inputa po wprowadzeniu danych
+    inputText.value ='';
+    let iconId = data.weather[0].icon;
+    let iconUrl = 'http://openweathermap.org/img/wn/' + iconId + '@2x.png';
+    let icon = new Image();
+    icon.src = iconUrl;
+    console.log(iconUrl);
+
+    // Wyświetlenie wszystkich danych 
+    showData.innerHTML =`
+         <div>
+            <div class="cityInfo">${data.name}, ${data.sys.country}</div>
+            <div class="description">${data.weather[0].description}</div>
+            <div class="temperature">${data.main.temp}°C</div>
+            <div class="icon"><img src= ${icon.src}></div>
+            <div class="pressure">Ciśnienie: ${data.main.pressure}</div>
+            <div class="humidity">Wilgotność: ${data.main.humidity}</div>
+         </div>
+      `; 
+}
+

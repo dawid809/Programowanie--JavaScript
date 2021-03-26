@@ -35,14 +35,14 @@ function  showWeatherReport(data) {
     console.log(iconUrl);
 
     // Wyświetlenie wszystkich danych 
-    showData.innerHTML =`
+    showData.innerHTML +=`
          <div class="weatherWrapper">
             <div class="cityInfo">${data.name}, ${data.sys.country}</div>
             <div class="description">${data.weather[0].description}</div>
             <div class="temperature">${data.main.temp}°C</div>
             <div class="icon"><img src= ${icon.src}></div>
-            <div class="pressure">Ciśnienie: ${data.main.pressure}</div>
-            <div class="humidity">Wilgotność: ${data.main.humidity}</div>
+            <div class="pressure">Ciśnienie: ${data.main.pressure} hPA</div>
+            <div class="humidity">Wilgotność: ${data.main.humidity}%</div>
          </div>
       `; 
 }

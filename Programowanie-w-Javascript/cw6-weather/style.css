@@ -27,3 +27,33 @@ input{
     background-color: ghostwhite;
     font-size: 20px;
 }
+
+.weatherWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 2px solid black;
+  margin: 20px;
+  padding: 20px;
+  width: 20%;
+}
+
+.cityInfo{
+  color: red;
+}
+
+.description{
+  color: azure;
+}
+
+.temperature{
+  color: blue;
+}
+
+.pressure{
+  color: green;
+}
+
+.humidity{
+  color: burlywood;
+}

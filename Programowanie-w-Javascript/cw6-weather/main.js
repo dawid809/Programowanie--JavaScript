@@ -36,7 +36,7 @@ function  showWeatherReport(data) {
 
     // Wyświetlenie wszystkich danych 
     showData.innerHTML =`
-         <div>
+         <div class="weatherWrapper">
             <div class="cityInfo">${data.name}, ${data.sys.country}</div>
             <div class="description">${data.weather[0].description}</div>
             <div class="temperature">${data.main.temp}°C</div>

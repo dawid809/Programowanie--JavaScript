@@ -56,14 +56,6 @@ window.onload = function(){
             
             lightbox.classList.add('visible');
 
-            // Usunięcie 'visible' 
-            lightbox.addEventListener('click', e=>{
-                if (e.target !== e.currentTarget) return;
-                newIndex=clickImgIndex;
-                prevBtn.style.display = 'block';
-                nextBtn.style.display = 'block';
-                lightbox.classList.remove('visible');
-            });
             // Usunięcie 'visible' po klinknięciu w przycisk close(X)
             document.getElementById('close').addEventListener('click', function () {
                 newIndex=clickImgIndex;

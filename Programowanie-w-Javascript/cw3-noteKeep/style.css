@@ -5,16 +5,16 @@
     --backgroundColor: #E3DDCA;
     --backgoundNote: #cce6ff;
     --buttonColor: #284D5B;
-    --buttonHoverColor: #3A808A;
+    --buttonHoverColor: #306a74;
     --inputColor: rgb(223, 213, 213);
     --inputFocus: rgb(219, 205, 205);
     --borderColor: #284D5B;
-  }
+}
 
 body {
     background-color: var(--backgroundColor);
     padding: 20px;
-  
+
 }
 
 h1 {
@@ -28,39 +28,50 @@ h1 {
 #topContainer {
     border-bottom: 1px solid var(--borderColor);
     padding-bottom: 20px;
-    width: 90%;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-#mainWrapper{
+#mainWrapper {
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
+    margin: 20px;
+    padding: 10px;
 }
 
 #titleContainer,
 #contentContainer,
 #editContainer {
-    margin: auto;
-    width: 50%;
+    width: 500px;
     margin-bottom: 5px;
-    justify-content: center;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#noteTitle {
+    display: flex;
+    align-items: center;
+    min-height: 40px;
 }
 
 #noteContent,
 #noteTitle {
     border-radius: 5px;
     background-color: var(--white);
-    font-size: 24px;
-    min-height: 50px;
-    width: 90%;
+    font-size: 1.5em;
+    width: 100%;
     padding-bottom: 20px;
     outline: none;
 }
 
 #noteContent {
-    font-size: 16px;
+    font-size: 1.25em;
     min-height: 100px;
 }
 
@@ -74,10 +85,10 @@ h1 {
 #addBtn {
     min-width: 120px;
     min-height: 50px;
-    margin-right: 20px;
-    font-size: 24px;
+    margin: 20px;
+    font-size: 1.5em;
     border-radius: 12px;
-    margin-top: 10px;
+    margin: 10px;
     background-color: var(--buttonColor);
     color: var(--white);
     outline: none;
@@ -91,13 +102,13 @@ h1 {
 }
 
 .note {
-    border-radius: 5px;
-    display: inline-block;
-    min-width: 20%;
-    max-width: 20%;
+    display: flex;
+    flex-direction: column;
+    min-width: 280px;
+    max-width: 280px;
     margin: 20px;
-    height: auto;
     word-wrap: break-word;
+    border: 1px solid var(--dark);
 }
 
 .note>* {
@@ -106,23 +117,23 @@ h1 {
 }
 
 h2 {
-    font-size: 26px;
-    font-weight: 900;
+    align-self: center;
+    font-size: 2em;
+    font-weight: bold;
     color: var(--textColor);
+    border-bottom: 1px solid var(--dark);
 }
 
 p {
-    border-top: 1px dotted var(--borderColor);
-    padding-top: 10px;
-    font-size: 16px;
-    min-height: 50px;
+    font-size: 1.1em;
+    min-height: 120px;
     color: var(--textColor);
 }
 
 h4 {
-    border-top: 1px dotted var(--borderColor);
-    padding-top: 10px;
-    font-size: 12px;
+    display: flex;
+    align-self: center;
+    font-size: 1em;
     font-style: italic;
     color: var(--textColor);
 }
@@ -131,13 +142,14 @@ h4 {
     outline: none;
     background-color: var(--buttonColor);
     color: var(--white);
-    font-size: 18px;
-    margin-bottom: 15px;
-    min-width: 100px;
-    min-height: 20px;
+    font-size: 1.2em;
+    margin: 10px;
+    padding: 5px;
+    min-width: 120px;
+    max-width: 120px;
     border-radius: 12px;
-    margin-left: 40px;
     outline: none;
+    align-self: center;
 }
 
 .deleteNoteBtn:hover {

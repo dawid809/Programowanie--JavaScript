@@ -19,6 +19,7 @@ function onNewNote() {
     let addContent = document.querySelector('#noteContent').value;
     let selectColor = document.querySelector('#noteColor').value;
 
+
     if(addTitle == '' || addContent == ''){
         return alert('Podaj tytuł i zawartość!');
     }

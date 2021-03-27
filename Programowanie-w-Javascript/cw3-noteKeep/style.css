@@ -1,8 +1,20 @@
+:root {
+    --white: white;
+    --dark: black;
+    --textColor: rgb(9, 52, 59);
+    --backgroundColor: #E3DDCA;
+    --backgoundNote: #cce6ff;
+    --buttonColor: #284D5B;
+    --buttonHoverColor: #3A808A;
+    --inputColor: rgb(223, 213, 213);
+    --inputFocus: rgb(219, 205, 205);
+    --borderColor: #284D5B;
+  }
+
 body {
-    background-color: #E3DDCA;
+    background-color: var(--backgroundColor);
     padding: 20px;
-    margin-left: auto;
-    margin-right: auto;
+  
 }
 
 h1 {
@@ -10,14 +22,20 @@ h1 {
     text-align: center;
     border-bottom: 2px solid;
     padding-bottom: 20px;
-    color: #284D5B;
+    color: var(--textColor);
 }
 
 #topContainer {
-    border-bottom: 1px solid #284D5B;
+    border-bottom: 1px solid var(--borderColor);
     padding-bottom: 20px;
     width: 90%;
     margin: auto;
+}
+
+#mainWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 #titleContainer,
@@ -33,11 +51,12 @@ h1 {
 #noteContent,
 #noteTitle {
     border-radius: 5px;
-    background-color: #FDF6F0;
+    background-color: var(--white);
     font-size: 24px;
     min-height: 50px;
     width: 90%;
     padding-bottom: 20px;
+    outline: none;
 }
 
 #noteContent {
@@ -47,7 +66,8 @@ h1 {
 
 #noteContent:focus,
 #noteTitle:focus {
-    background-color: #f3eade;
+    background-color: var(--inputFocus);
+    outline: none;
 }
 
 #noteColor,
@@ -58,14 +78,15 @@ h1 {
     font-size: 24px;
     border-radius: 12px;
     margin-top: 10px;
-    background-color: #284D5B;
-    color: rgb(230, 213, 213)
+    background-color: var(--buttonColor);
+    color: var(--white);
+    outline: none;
 }
 
 #noteColor:hover,
 #addBtn:hover {
     outline: none;
-    background-color: #3A808A;
+    background-color: var(--buttonHoverColor);
 
 }
 
@@ -87,44 +108,39 @@ h1 {
 h2 {
     font-size: 26px;
     font-weight: 900;
+    color: var(--textColor);
 }
 
 p {
-    border-top: 1px dotted #284D5B;
+    border-top: 1px dotted var(--borderColor);
     padding-top: 10px;
     font-size: 16px;
     min-height: 50px;
+    color: var(--textColor);
 }
 
 h4 {
-    border-top: 1px dotted #284D5B;
+    border-top: 1px dotted var(--borderColor);
     padding-top: 10px;
     font-size: 12px;
     font-style: italic;
+    color: var(--textColor);
 }
 
 .deleteNoteBtn {
     outline: none;
-    background-color: #284D5B;
-    color: rgb(230, 213, 213);
+    background-color: var(--buttonColor);
+    color: var(--white);
     font-size: 18px;
     margin-bottom: 15px;
     min-width: 100px;
     min-height: 20px;
     border-radius: 12px;
     margin-left: 40px;
+    outline: none;
 }
 
 .deleteNoteBtn:hover {
-    background-color: #3A808A;
+    background-color: var(--buttonHoverColor);
+    outline: none;
 }
-
-/* #topContainer{
-    position: fixed;
-    height: 300px;
-    top: 0px;
-    width: 100%;
-    z-index: 100;
-    transition: all .3s ease;
-    background-color: tomato;
-} */

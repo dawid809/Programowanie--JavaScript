@@ -30,7 +30,6 @@ function onNewNote() {
     }else{
         notes=notesFromStorage;
     }
-   
 
     // obiekt notatki
     let note ={

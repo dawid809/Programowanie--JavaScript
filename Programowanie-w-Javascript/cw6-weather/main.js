@@ -24,7 +24,7 @@ if(localStorageContent === null){
     weatherArray = JSON.parse(localStorageContent);
 }
 
-console.log('arrayfromLS',weatherArray);
+console.log('Array',weatherArray);
 
 function GetDataFromAPI() {
     let cityInput = inputText.value;
@@ -39,63 +39,54 @@ function GetDataFromAPI() {
     fetch(apiUrl)
         .then(data => data.json())
         .then(showWeatherReport)
-        //.then(checkIfCityAlreadyExist)
         .then(SaveTOLocalStorage)
         .then(ViewLocalStorage)
-      
-        //.then(showWeather)
-        // .catch(error => console.log('Błąd: ', error));
-        .catch(error => console.log('Błąd: ', error)).innerHTML='Zła nazaww misata';
+        .catch(error => console.log('Błąd: ', error)).innerHTML='Zła nazwa miasta';
 }
 
+// Wyswietla dane z API i zapisuje w objekcie weather
 function  showWeatherReport(data) {
-
-    console.log('daneZapy',data);
+    console.log('Dane z API',data);
     inputText.value ='';
 
     iconId = data.weather[0].icon;
-    console.log('iconID',iconId);
+
     let iconUrl = 'http://openweathermap.org/img/wn/' + iconId + '@2x.png';
     let icon = new Image();
     icon.src = iconUrl;
-    console.log(iconUrl);
 
     weatherObj = {
         name: data.name,
         country: data.sys.country,
-        description: data.weather[0].description,
+        description: data.weather[0].main,
         temperature: data.main.temp,
         pressure: data.main.pressure,
         humidity: data.main.humidity,
         iconUrl: iconUrl
     };
-  
-  
-    console.log('oryginalOBJ,', weatherObj);
     weatherArray.push(weatherObj);
 }
 
-console.log(weatherArray);
-
+// Zapisuje do LS
 function SaveTOLocalStorage() {
-    console.log(weatherObj);
     localStorage.setItem(localStorageKey, JSON.stringify(weatherArray));
 }
 
+// Wyswietla dane z LS
 function ViewLocalStorage() {
 
     let htmlNote='';
     weatherArray.forEach(function (weatherObj,index) {
         htmlNote +=`
         <div class="weatherWrapper">
-             <div class="cityInfo">${weatherObj.name}, ${weatherObj.country}</div>
-             <div class="description">${weatherObj.description}</div>
-             <div class="icon"><img src= ${weatherObj.iconUrl}></div>
-             <div class="temperature">${weatherObj.temperature}°C</div>
+            <div class="cityInfo">${weatherObj.name}, ${weatherObj.country}</div>
+            <div class="description">${weatherObj.description}</div>
+            <div class="icon"><img src= ${weatherObj.iconUrl}></div>
+            <div class="temperature">${weatherObj.temperature}°C</div>
             <div class="pressure">Ciśnienie: ${weatherObj.pressure} hPA</div>
             <div class="humidity">Wilgotność: ${weatherObj.humidity}%</div>
-            <button id ="${index}" onclick ="deleteNote(this.id)"
-            class="deleteNoteBtn">Delete</button>
+            <button id ="${index}" onclick ="deleteCity(this.id)"
+            class="deleteBtn">Delete</button>
          </div>
     `;
         showData.innerHTML = htmlNote;
@@ -103,7 +94,7 @@ function ViewLocalStorage() {
 }
 
 // eslint-disable-next-line no-unused-vars
-function  deleteNote(index) {
+function  deleteCity(index) {
     
     weatherArray.splice(index,1);
     localStorage.setItem(localStorageKey, JSON.stringify(weatherArray));
@@ -114,20 +105,17 @@ function  deleteNote(index) {
         window.location.reload();}
 }
 
-ViewLocalStorage();
-
 function checkIfCityAlreadyExist(cityInput){
     //let c = cityInput;
    
     let inputNameTrimmed = cityInput.trim();
-    console.log('city-input',inputNameTrimmed);
-    let inputNameFormatted = cityInput.charAt(0).toUpperCase() + cityInput.slice(1).toLowerCase();
 
-    console.log('slice',inputNameFormatted);
+    let inputNameFormatted = inputNameTrimmed.charAt(0).toUpperCase() + cityInput.slice(1).toLowerCase();
     if(weatherArray.some(weatherObj => weatherObj.name === inputNameFormatted))
     {
-        console.log('name',weatherObj.name);
         return true;
     }
     return false;
 }
+
+ViewLocalStorage();

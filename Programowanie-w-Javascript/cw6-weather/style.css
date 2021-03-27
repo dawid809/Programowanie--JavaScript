@@ -1,59 +1,136 @@
+:root {
+  --blue: #85bffa;
+  --lighBlue: #cce6ff;
+  --white: #f0e7e7;
+  --black: #000;
+  --buttonLight: #597777;
+  --buttonDark: #485f5f;
+  --backgroundColor: #2083df;
+  --backgroundForm: #1b5288;
+  --backgroundNote: rgb(172, 123, 105);
+}
+
 body {
-    margin: 0;
-    background-color: #28B8B8;
+  margin: 0;
+  background-color: var(--backgroundColor);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.city{
-    background-color: #2BC297;
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 10px;
+.city {
+  background-color: var(--backgroundForm);
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2em;
+  border-bottom: 2px solid var(--black);
 }
 
-span{
-    font-size:  40px;
+
+h1 {
+  font-size: 3em;
+  color: var(--white);
 }
 
-#addCity{
-    font-size: 20px;
-    background-color: #28B8B8;
-}
-#addCity:hover{
-    background-color:#2BC241 ;
+#cityName {
+  margin: 30px;
+  color: var(--black);
 }
 
-input{
-    background-color: ghostwhite;
-    font-size: 20px;
+#addCity {
+  color: var(--white);
+  font-size: 20px;
+  background-color: var(--buttonDark);
+  padding: 10px;
+  width: 150px;
 }
 
-.weatherWrapper{
+#addCity:hover {
+  background-color: var(--buttonLight);
+}
+
+input {
+  background-color: var(--lighBlue);
+  padding: 10px;
+  font-size: 20px;
+  outline: none;
+}
+
+input:focus {
+  background-color: var(--blue);
+  outline: none;
+}
+
+#cityData {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.weatherWrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  border: 2px solid black;
-  margin: 20px;
+  align-items: center;
+  border: 2px solid var(--black);
+  margin: 10px 30px;
   padding: 20px;
-  width: 20%;
+  min-width: 200px;
+  max-width: 220px;
+  background: var(--backgroundNote);
 }
 
-.cityInfo{
-  color: red;
+.cityInfo {
+  font-size: 1.75em;
+  color: var(--white);
+  margin: 5px;
 }
 
-.description{
-  color: azure;
+.description {
+  font-size: 1.3em;
+  color: var(--black);
+  margin: 5px;
 }
 
-.temperature{
-  color: blue;
+.icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 50px;
+  margin-top: -20px;
 }
 
-.pressure{
-  color: green;
+img {
+  width: 180%;
+  height: 180%;
 }
 
-.humidity{
-  color: burlywood;
+.temperature {
+  font-size: 1.8em;
+  color: var(--black);
+  margin: 5px;
+}
+
+.pressure {
+  font-size: 1em;
+  color: var(--black);
+  margin: 5px;
+}
+
+.humidity {
+  font-size: 1em;
+  color: var(--black);
+  margin: 5px;
+}
+
+.deleteBtn {
+  margin: 10px;
+  padding: 8px;
+  min-width: 50%;
+  background: var(--buttonDark);
+  color: var(--white);
+  outline: none;
+}
+
+.deleteBtn:hover {
+  background: var(--buttonLight);
 }

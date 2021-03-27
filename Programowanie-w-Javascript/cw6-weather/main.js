@@ -1,7 +1,7 @@
 // pobranie referencji
 const inputText = document.querySelector('#cityName');
 const addCityButton = document.querySelector('#addCity');
-const showData = document.querySelector('#cityData');
+let showData = document.querySelector('#cityData');
 
 // Klucz API do strony OpenWeather.org
 const apiKey = 'c18e218d437295f57f6cf1900d5fe9cc';
@@ -9,8 +9,22 @@ const apiKey = 'c18e218d437295f57f6cf1900d5fe9cc';
 // Zdarzenie klika dla buttona
 addCityButton.addEventListener('click', GetDataFromAPI);
 
+// zmienne
 const localStorageKey = 'weathers';
 let weatherArray = [];
+let iconId;
+let weatherObj = Object();
+
+const localStorageContent = localStorage.getItem(localStorageKey);
+
+
+if(localStorageContent === null){
+    weatherArray = [];
+}else{
+    weatherArray = JSON.parse(localStorageContent);
+}
+
+console.log('arrayfromLS',weatherArray);
 
 function GetDataFromAPI() {
     const cityInput = inputText.value;
@@ -21,47 +35,75 @@ function GetDataFromAPI() {
     fetch(apiUrl)
         .then(data => data.json())
         .then(showWeatherReport)
+        .then(SaveTOLocalStorage)
+        .then(ViewLocalStorage)
+        //.then(showWeather)
         // .catch(error => console.log('Błąd: ', error));
         .catch(error => console.log('Błąd: ', error)).innerHTML='Zła nazaww misata';
 }
 
 function  showWeatherReport(data) {
-    console.log(data);
-    // Wyczyszczenie inputa po wprowadzeniu danych
+
+    console.log('daneZapy',data);
     inputText.value ='';
-    let iconId = data.weather[0].icon;
+    iconId = data.weather[0].icon;
     let iconUrl = 'http://openweathermap.org/img/wn/' + iconId + '@2x.png';
     let icon = new Image();
     icon.src = iconUrl;
     console.log(iconUrl);
 
-    let weatherObj = {
+    weatherObj = {
         name: data.name,
-        main : {
-            description: data.weather[0].description,
-            temperature: data.main.temp,
-            pressure: data.main.pressure,
-            humidity: data.main.humidity
-        }
+        country: data.sys.country,
+        description: data.weather[0].description,
+        temperature: data.main.temp,
+        pressure: data.main.pressure,
+        humidity: data.main.humidity,
+        iconUrl: iconUrl
     };
-
+  
+  
+    console.log('oryginalOBJ,', weatherObj);
     weatherArray.push(weatherObj);
-    weatherArray = localStorage.setItem(localStorageKey, JSON.stringify(weatherObj));
-    // Wyświetlenie wszystkich danych 
-    console.log(weatherObj);
-
-    showData.innerHTML +=`
-         <div class="weatherWrapper">
-            <div class="cityInfo">${weatherObj.name}</div>
-            <div class="description">${weatherObj.main.description}</div>
-            <div class="temperature">${weatherObj.main.temperature}°C</div>
-            <div class="pressure">Ciśnienie: ${weatherObj.main.pressure} hPA</div>
-            <div class="humidity">Wilgotność: ${weatherObj.main.humidity}%</div>
-         </div>
-      `; 
 }
 
-
-
-//weatherArray.push(weatherObj);
 console.log(weatherArray);
+
+function SaveTOLocalStorage() {
+    console.log(weatherObj);
+    localStorage.setItem(localStorageKey, JSON.stringify(weatherArray));
+}
+
+function ViewLocalStorage() {
+
+    let htmlNote='';
+    weatherArray.forEach(function (weatherObj,index) {
+        htmlNote +=`
+        <div class="weatherWrapper">
+             <div class="cityInfo">${weatherObj.name}, ${weatherObj.country}</div>
+             <div class="description">${weatherObj.description}</div>
+             <div class="icon"><img src= ${weatherObj.iconUrl}></div>
+             <div class="temperature">${weatherObj.temperature}°C</div>
+            <div class="pressure">Ciśnienie: ${weatherObj.pressure} hPA</div>
+            <div class="humidity">Wilgotność: ${weatherObj.humidity}%</div>
+            <button id ="${index}" onclick ="deleteNote(this.id)"
+            class="deleteNoteBtn">Delete</button>
+         </div>
+    `;
+        showData.innerHTML = htmlNote;
+    });
+}
+
+// eslint-disable-next-line no-unused-vars
+function  deleteNote(index) {
+    
+    weatherArray.splice(index,1);
+    localStorage.setItem(localStorageKey, JSON.stringify(weatherArray));
+    ViewLocalStorage();
+
+    // odswieza strone gdy notes(tablica) == null
+    if(index == 0 || localStorageContent === null)  {
+        window.location.reload();}
+}
+
+ViewLocalStorage();

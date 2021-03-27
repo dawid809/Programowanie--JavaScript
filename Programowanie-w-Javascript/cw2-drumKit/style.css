@@ -1,12 +1,17 @@
 :root {
     --white: white;
     --dark: black;
-    --titleColor: rgb(207, 207, 216);
+    --titleColor: rgb(248, 248, 248);
     --backgroundColor: #c34f4f;
     --buttonColor: #571919;
     --buttonHoverColor: #792323;
     --borderColor: whitesmoke;
     --blackOpacity: rgba(0, 0, 0, 0.8);
+    --red: #792323;
+    --darkRed: #571919;
+    --lightRed: #c34f4f;
+    --lightblue: rgb(117, 167, 192);
+    --blue: rgb(101, 146, 168);
   }
 
 body {
@@ -16,7 +21,7 @@ body {
 
 .audio-box {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     width: 100%;
     flex-direction: row;
@@ -34,10 +39,10 @@ div[class^="pad"]{
     margin: 10px;
     min-width: 100px;
     text-align: center;
-    background-color: #DDDDDD;
+    background-color: #aaa0a0;
     border-radius: 24px;
     font-size: 5em;
-    border: rgb(45, 65, 65) 5px solid;
+    border: 5px solid var(--dark);
     color: var(--dark);
 }
 
@@ -52,10 +57,10 @@ div[class^="pad"]{
     display: flex;
     flex-direction: column;
     text-align: center;
-    border-right: dashed black 5px;
+    border-right: 5px dashed var(--dark);
 }
 
-#temp {
+#channelWraper {
     width: 40%;
     display: flex;
     flex-direction: column;
@@ -64,48 +69,38 @@ div[class^="pad"]{
 
 button {
     min-width: 100px;
-    min-height: 60px;
-    width: auto;
     margin: 5px 10px;
-    border-radius: 24px;
-    background: rgb(108, 156, 180);
-    font-size: 24px;
+    border-radius: 12px;
+    background: var(--blue);
+    font-size: 1.5em;
     font-weight: bold;
     outline: none;
-    border: rgb(153, 25, 32) 3px solid;
+    border:  2px solid var(--dark);
+    outline: none;
 }
 
 button:hover {
-    min-width: 120px;
-    min-height: 60px;
-    width: auto;
-    border-radius: 24px;
-    background: wheat;
-    font-size: 24px;
+    min-width: 100px;
+    background: var(--lightblue);
 }
 
 #btn-box1,
 #btn-box2,
 #btn-box3,
 #btn-box4 {
-
-    text-align: center;
-    float: left;
-    width: 70%;
-    height: auto;
-    margin-left: 30px;
-    padding: 30px;
-    border-bottom: dashed black 2px;
+display: flex;
+    padding: 20px;
+    align-self: center;
+    border-bottom: 3px dashed var(--dark);
 }
 
 #btn-title,
 #chanel-title {
-    height: 100px;
     font-weight: 700;
-    font-size: 50px;
+    font-size: 4em;
     text-align: center;
-    border-bottom: dashed black 5px;
-    padding-bottom: 20px;
+    border-bottom: 3px dashed var(--dark);
+    padding-bottom: 10px;
 }
 
 label {
@@ -113,46 +108,62 @@ label {
 }
 
 input[type="checkbox"] {
-    padding-left: 50px;
+    cursor: pointer;
+    margin: 10px;
     min-width: 30px;
     min-height: 30px;
 }
 
 .channels {
     padding: 10px;
+    margin: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#playResetWrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
 }
 
 #play-channels,
 #reset-channels {
-    background-color: rgb(187, 26, 26);
-    border: tomato solid;
+    background-color: var(--red);
+    border: 2px solid var(--darkRed);
+    justify-content: center;
+    padding: 5px;
+    outline: none;
+}
+
+button{
+    cursor: pointer;
 }
 
 #play-channels:hover,
 #reset-channels:hover {
-    background-color: rgb(206, 224, 224);
+    background-color: var(--lightRed);
 }
 
 .record{
-    min-width: 60px;
-    min-height: 60px;
+    min-width: 65px;
+    min-height: 65px;
     border-radius: 50%;
-    float: left;
-    background-color: rgb(122, 36, 36);
+   background-color: var(--red);
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
-    border-right: rgb(39, 42, 51) solid 4px;
-    margin-left: 50px;
+    font-size: 2em;
+    border-right: 2px solid var(--dark);
 }
 div,h1{
     cursor: default;
 }
 
 .visible{
-    background: darkgrey !important;
+    background: rgb(206, 200, 200) !important;
     transform: scale(1.1) !important;
- border: snow solid 5px !important;
+ border:  solid 5px rgb(44, 42, 42) !important;
  color: yellow;
 }

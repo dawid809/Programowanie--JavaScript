@@ -9,6 +9,7 @@ const apiKey = 'c18e218d437295f57f6cf1900d5fe9cc';
 // Zdarzenie klika dla buttona
 addCityButton.addEventListener('click', GetDataFromAPI);
 
+
 // zmienne
 const localStorageKey = 'weathers';
 let weatherArray = [];
@@ -16,7 +17,6 @@ let iconId;
 let weatherObj = Object();
 
 const localStorageContent = localStorage.getItem(localStorageKey);
-
 
 if(localStorageContent === null){
     weatherArray = [];
@@ -27,7 +27,11 @@ if(localStorageContent === null){
 console.log('arrayfromLS',weatherArray);
 
 function GetDataFromAPI() {
-    const cityInput = inputText.value;
+    let cityInput = inputText.value;
+
+    // sprawdza czy posiadamy już to miasto
+    if(checkIfCityAlreadyExist(cityInput) == true) return;
+
     console.log(cityInput);
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityInput}&appid=${apiKey}&units=metric`;
 
@@ -35,8 +39,10 @@ function GetDataFromAPI() {
     fetch(apiUrl)
         .then(data => data.json())
         .then(showWeatherReport)
+        //.then(checkIfCityAlreadyExist)
         .then(SaveTOLocalStorage)
         .then(ViewLocalStorage)
+      
         //.then(showWeather)
         // .catch(error => console.log('Błąd: ', error));
         .catch(error => console.log('Błąd: ', error)).innerHTML='Zła nazaww misata';
@@ -46,7 +52,9 @@ function  showWeatherReport(data) {
 
     console.log('daneZapy',data);
     inputText.value ='';
+
     iconId = data.weather[0].icon;
+    console.log('iconID',iconId);
     let iconUrl = 'http://openweathermap.org/img/wn/' + iconId + '@2x.png';
     let icon = new Image();
     icon.src = iconUrl;
@@ -102,8 +110,24 @@ function  deleteNote(index) {
     ViewLocalStorage();
 
     // odswieza strone gdy notes(tablica) == null
-    if(index == 0 || localStorageContent === null)  {
+    if (index == 0 || localStorageContent === null)  {
         window.location.reload();}
 }
 
 ViewLocalStorage();
+
+function checkIfCityAlreadyExist(cityInput){
+    //let c = cityInput;
+   
+    let inputNameTrimmed = cityInput.trim();
+    console.log('city-input',inputNameTrimmed);
+    let inputNameFormatted = cityInput.charAt(0).toUpperCase() + cityInput.slice(1).toLowerCase();
+
+    console.log('slice',inputNameFormatted);
+    if(weatherArray.some(weatherObj => weatherObj.name === inputNameFormatted))
+    {
+        console.log('name',weatherObj.name);
+        return true;
+    }
+    return false;
+}

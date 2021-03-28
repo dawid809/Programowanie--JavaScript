@@ -125,3 +125,24 @@ h1 {
 button:hover {
   background-color: var(--buttonHoverColor);
 }
+
+.disabledBtn:disabled{
+  background-color: rgba(239, 239, 239, 0.3);
+  color: rgba(255, 255, 255, 0.3)!important;
+  border-color:rgba(118, 118, 118, 0.3)!important;
+  cursor: default !important;
+  max-height: 100px;
+  max-width: 100px;
+  justify-content: center;
+  align-self: center;
+  min-height: 100px;
+  min-width: 100px;
+  border-radius: 25%;
+  color: var(--dark);
+  border: 2px solid var(--dark);
+  font-size: 3em;
+  cursor: pointer;
+  outline: 0;
+  font-weight: 700;
+  margin: -10px;
+}

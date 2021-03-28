@@ -23,21 +23,25 @@ window.onload = function(){
              
             // Ukrywa buttony  gdy wybieramy zdjęcie o indexie 0 albo ostatnim
             if(newIndex == 0){
-                prevBtn.style.display = 'none';
+                prevBtn.className='disabledBtn';
+                prevBtn.setAttribute('disabled', true); 
             }
             if(newIndex == gallery.length  - 1){
-                nextBtn.style.display = 'none';
+                nextBtn.className='disabledBtn';
+                nextBtn.setAttribute('disabled', true); 
             }
 
             prevBtn.onclick= () =>{
                 newIndex--;
                 if(newIndex == 0){
                     preview();
-                    prevBtn.style.display = 'none';
+                    prevBtn.className='disabledBtn';
+                    prevBtn.setAttribute('disabled', true); 
                 }
                 else{
                     preview();
-                    nextBtn.style.display = 'block';
+                    nextBtn.className='arrow-prev';
+                    nextBtn.removeAttribute('disabled'); 
                 }
             };
         
@@ -45,11 +49,13 @@ window.onload = function(){
                 newIndex++;
                 if(newIndex == gallery.length  - 1){
                     preview();
-                    nextBtn.style.display = 'none';
+                    nextBtn.className='disabledBtn';
+                    nextBtn.setAttribute('disabled', true); 
                 } 
                 else {
                     preview();
-                    prevBtn.style.display = 'block';
+                    prevBtn.className='arrow-next';
+                    prevBtn.removeAttribute('disabled'); 
                 }
             };
             preview();
@@ -61,9 +67,11 @@ window.onload = function(){
                 newIndex=clickImgIndex;
                 // Eliminuje błąd polegający na tym, że po przy zamknięciiu poprzez button X
                 // 1-ego i ostatniego zdjęcia gubiliśmy buttony strzałek
-                prevBtn.style.display = 'block';
-                nextBtn.style.display = 'block';
                 lightbox.classList.remove('visible');
+                prevBtn.className='arrow-next';
+                prevBtn.removeAttribute('disabled'); 
+                nextBtn.className='arrow-next';
+                nextBtn.removeAttribute('disabled'); 
             });
         };
     }

@@ -6,25 +6,15 @@ let addTitle = document.getElementById('noteTitle');
 let addContent = document.getElementById('noteContent');
 let selectColor = document.querySelector('#noteColor');
 
-// odczytanie tablicy notatek z localStorage
-let notesFromStorage = JSON.parse(localStorage.getItem(localStorageKey));
-
 // dodawanie notatek
 function onNewNote() {
 
     if(addTitle.value === '' || addContent.value === ''){
         return alert('Podaj tytuł i zawartość!');
     }
-
     console.log(addTitle.value,addContent.value);
 
-    let notesFromStorage = localStorage.getItem(localStorageKey);
-    
-    if (notesFromStorage == null){
-        notes = [];
-    }else{
-        notes= JSON.parse(notesFromStorage);
-    }
+    CheckLocalStorage();
 
     // obiekt notatki
     let note ={
@@ -47,13 +37,7 @@ function onNewNote() {
 
 function showNotes() {
 
-    let notesFromStorage = localStorage.getItem(localStorageKey);
-
-    if (notesFromStorage == null){
-        notes = [];
-    }else{
-        notes= JSON.parse(notesFromStorage);
-    }
+    CheckLocalStorage();
     
     let htmlNote='';
     notes.forEach(function (element,index) {
@@ -79,18 +63,12 @@ function showNotes() {
 // eslint-disable-next-line no-unused-vars
 function editNote(index) {
 
-    let notesFromStorage = localStorage.getItem(localStorageKey);
+    CheckLocalStorage();
 
     if (addTitle.value !== '' || addContent.value !== ''){
         return alert('Proszę wyczyść formularz przed edycją');
     }
      
-    if (notesFromStorage == null){
-        notes = [];
-    }else{
-        notes = JSON.parse(notesFromStorage);
-    }
-
     console.log(notes);
 
     // eslint-disable-next-line no-unused-vars
@@ -115,8 +93,18 @@ function  deleteNote(index) {
     showNotes();
 
     // odswieza strone gdy notes(tablica) === null
-    if(index === 0 || notesFromStorage === null)  {
+    if (index == 0 || notes === null) {
         window.location.reload();}
+}
+
+function CheckLocalStorage() {
+    let notesFromStorage = localStorage.getItem(localStorageKey);
+
+    if (notesFromStorage == null){
+        notes = [];
+    }else{
+        notes = JSON.parse(notesFromStorage);
+    }
 }
 
 showNotes();

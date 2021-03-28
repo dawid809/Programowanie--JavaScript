@@ -2,6 +2,9 @@ const localStorageKey='notes';
 let notes=[];
 
 document.querySelector('#addBtn').addEventListener('click', onNewNote);
+let addTitle = document.getElementById('noteTitle');
+let addContent = document.getElementById('noteContent');
+let selectColor = document.querySelector('#noteColor');
 
 // odczytanie tablicy notatek z localStorage
 let notesFromStorage = JSON.parse(localStorage.getItem(localStorageKey));
@@ -15,48 +18,48 @@ if(notesFromStorage != null){
 
 // dodawanie notatek
 function onNewNote() {
-    let addTitle = document.querySelector('#noteTitle').value;
-    let addContent = document.querySelector('#noteContent').value;
-    let selectColor = document.querySelector('#noteColor').value;
 
-
-    if(addTitle == '' || addContent == ''){
+    if(addTitle.value === '' || addContent.value === ''){
         return alert('Podaj tytuł i zawartość!');
     }
-    console.log(addTitle,addContent);
 
+    console.log(addTitle.value,addContent.value);
+
+    let notesFromStorage = localStorage.getItem(localStorageKey);
     
     if (notesFromStorage == null){
         notes = [];
     }else{
-        notes=notesFromStorage;
+        notes= JSON.parse(notesFromStorage);
     }
 
     // obiekt notatki
     let note ={
-        title: addTitle,
-        content: addContent,
-        colour: selectColor,
+        title: addTitle.value,
+        content: addContent.value,
+        colour: selectColor.value,
         pinned: false,
         createDate: new Date() 
     };
-    note.title=addTitle;
-    note.content=addContent;
-    //note.createDate = new Date();
 
     notes.push(note);
+
     notes = localStorage.setItem(localStorageKey, JSON.stringify(notes));
+
+    addTitle.value = '';
+    addContent.value = '';
 
     showNotes();
 }
 
 function showNotes() {
-    
-    
+
+    let notesFromStorage = localStorage.getItem(localStorageKey);
+
     if (notesFromStorage == null){
         notes = [];
     }else{
-        notes=notesFromStorage;
+        notes= JSON.parse(notesFromStorage);
     }
     
     let htmlNote='';
@@ -66,8 +69,12 @@ function showNotes() {
         <h2>${index+1}. ${element.title}</h2>
         <p>${element.content}</p>
         <h4>Date: ${element.createDate.toLocaleString()}</h4>
-        <button id ="${index}" onclick ="deleteNote(this.id)"
-        class="deleteNoteBtn">Delete</button>
+        <div class="noteBtnWrapper">
+            <button id ="${index}" onclick ="deleteNote(this.id)"
+                class="deleteNoteBtn">Delete</button>
+            <button id ="${index}" onclick ="editNote(this.id)"
+                class="editNoteBtn">Edit</button>
+        <div>
         </section>
     `;
         let main=document.querySelector('main');
@@ -77,14 +84,45 @@ function showNotes() {
 }
 
 // eslint-disable-next-line no-unused-vars
-function  deleteNote(index) {
-    
-    notes.splice(index,1);
+function editNote(index) {
+
+    let notesFromStorage = localStorage.getItem(localStorageKey);
+
+    if (addTitle.value !== '' || addContent.value !== ''){
+        return alert('Proszę wyczyść formularz przed edycją');
+    }
+     
+    if (notesFromStorage == null){
+        notes = [];
+    }else{
+        notes = JSON.parse(notesFromStorage);
+    }
+
+    console.log(notes);
+
+    // eslint-disable-next-line no-unused-vars
+    notes.findIndex((element, index) => {
+        addTitle.value = element.title;
+        addContent.value = element.content;
+        selectColor.value = element.colour;
+
+    });
+    notes.splice(index, 1);
     localStorage.setItem(localStorageKey, JSON.stringify(notes));
     showNotes();
+}
 
-    // odswieza strone gdy notes(tablica) == null
-    if(index==0 || notesFromStorage == null)  {
+// eslint-disable-next-line no-unused-vars
+function  deleteNote(index) {
+
+    notes.splice(index,1);
+
+    localStorage.setItem(localStorageKey, JSON.stringify(notes));
+
+    showNotes();
+
+    // odswieza strone gdy notes(tablica) === null
+    if(index === 0 || notesFromStorage === null)  {
         window.location.reload();}
 }
 

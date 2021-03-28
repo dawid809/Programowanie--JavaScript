@@ -9,13 +9,6 @@ let selectColor = document.querySelector('#noteColor');
 // odczytanie tablicy notatek z localStorage
 let notesFromStorage = JSON.parse(localStorage.getItem(localStorageKey));
 
-if(notesFromStorage != null){
-    notes = notesFromStorage.map(note => {
-        note.createDate = new Date(note.createDate);
-        return note;
-    });
-}
-
 // dodawanie notatek
 function onNewNote() {
 
@@ -39,7 +32,7 @@ function onNewNote() {
         content: addContent.value,
         colour: selectColor.value,
         pinned: false,
-        createDate: new Date() 
+        createDate: new Date().toLocaleString() 
     };
 
     notes.push(note);

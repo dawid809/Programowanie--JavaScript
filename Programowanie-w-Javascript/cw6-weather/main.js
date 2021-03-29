@@ -41,7 +41,7 @@ function GetDataFromAPI() {
         .then(showWeatherReport)
         .then(SaveTOLocalStorage)
         .then(ViewLocalStorage)
-        .catch(error => console.log('Błąd: ', error)).innerHTML='Zła nazwa miasta';
+        .catch(error => alert('Niepoprawna nazwa miasta', error));
 }
 
 // Wyswietla dane z API i zapisuje w objekcie weather
@@ -119,3 +119,21 @@ function checkIfCityAlreadyExist(cityInput){
 }
 
 ViewLocalStorage();
+
+// function upadeDate() {
+//     //GetDataFromAPI();
+// }
+
+// setInterval(() => {
+
+//     if(localStorageContent === null){
+//         weatherArray = [];
+//     }else{
+//         weatherArray = JSON.parse(localStorageContent);
+//     }
+//     weatherArray.length = 0;
+
+//     weatherArray.map(weatherObj => weatherArray.push(weatherObj));
+//     console.log('render');
+//     upadeDate();
+// }, 1000 * 60 * 5);

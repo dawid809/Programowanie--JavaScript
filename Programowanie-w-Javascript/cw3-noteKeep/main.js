@@ -17,18 +17,17 @@ function onNewNote() {
     CheckLocalStorage();
 
     // obiekt notatki
-    let note ={
+    let  note ={
         title: addTitle.value,
         content: addContent.value,
         colour: selectColor.value,
         pinned: false,
-        createDate: new Date().toLocaleString() 
+        createDate: new Date().toLocaleString(),
     };
-
     notes.push(note);
 
     notes = localStorage.setItem(localStorageKey, JSON.stringify(notes));
-
+   
     addTitle.value = '';
     addContent.value = '';
 
@@ -38,26 +37,37 @@ function onNewNote() {
 function showNotes() {
 
     CheckLocalStorage();
-    
+
+    // sortowanie według pinned a następnie daty
+    notes.sort(sortByDate);
+    notes.sort(sortByIsPinned);
+
     let htmlNote='';
     notes.forEach(function (element,index) {
         htmlNote +=`
         <section class="note" style="background-color:${element.colour};">
-        <h2>${index+1}. ${element.title}</h2>
-        <p>${element.content}</p>
-        <h4>Date: ${element.createDate.toLocaleString()}</h4>
+            <div class="pinWrapper">
+                <button id ="${index}" onclick ="onPinned(this.id,${element.pinned})"
+                 class="pinNoteBtn" style="background-color:${element.colour};">
+                    <img id ="src${index}" src="images/pin.png"  />
+                </button>
+            </div>
+            <h2>${index+1}. ${element.title}</h2>
+            <p>${element.content}</p>
+            <h4>Date: ${element.createDate.toLocaleString()}</h4>
         <div class="noteBtnWrapper">
             <button id ="${index}" onclick ="deleteNote(this.id)"
                 class="deleteNoteBtn">Delete</button>
             <button id ="${index}" onclick ="editNote(this.id)"
                 class="editNoteBtn">Edit</button>
-        <div>
+        </div>
         </section>
     `;
         let main=document.querySelector('main');
       
         main.innerHTML = htmlNote;
     });
+    console.log('sordted',notes);
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -76,7 +86,6 @@ function editNote(index) {
         addTitle.value = element.title;
         addContent.value = element.content;
         selectColor.value = element.colour;
-
     });
     notes.splice(index, 1);
     localStorage.setItem(localStorageKey, JSON.stringify(notes));
@@ -107,4 +116,35 @@ function CheckLocalStorage() {
     }
 }
 
+// malejąco
+function sortByDate (a,b) {
+    if(a.createDate > b.createDate)
+        return -1;
+    else if (a.createDate < b.createDate)
+        return 1;
+    else
+        return 0;
+}
+
+// po true
+function sortByIsPinned (a,b) {
+    if(a.pinned > b.pinned)
+        return -1;
+    else if (a.pinned < b.pinned)
+        return 1;
+    else
+        return 0;
+}
+
+// eslint-disable-next-line no-unused-vars
+function onPinned(index, pinValue) {
+    CheckLocalStorage();
+    console.log('clicked', index);
+ 
+    let  p = document.getElementById(`src${index}`).classList.toggle('pinToggle');
+    console.log('toggle',p);
+    
+
+    //showNotes();
+}
 showNotes();

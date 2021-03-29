@@ -163,19 +163,19 @@ h4 {
     outline: none;
 }
 
-.pinWrapper{
-  display: flex;
-  justify-content: flex-end;
-  margin: 0;
-  overflow: hidden;
+.pinWrapper {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    overflow: hidden;
 }
 
-.pinWrapper img{
+.pinWrapper img {
     width: auto;
     height: 100%;
-  }
+}
 
-.pinNoteBtn{
+.pinNoteBtn {
     width: 40px;
     height: 40px;
     outline: none;
@@ -183,6 +183,6 @@ h4 {
     border: none;
 }
 
-.pinToggle{
-    content: url('images/unpin.png' ) ;
+.pinToggle {
+    content: url('images/unpin.png');
 }
